@@ -3,8 +3,11 @@ extends CharacterBody2D
 var speed: int = 100
 var motion = Vector2.ZERO
 
+func _ready():
+	Global.set_player_reference(self)
+
 func _physics_process(delta):
-	var motion = Vector2.ZERO  # Resetuj motion na početku svakog frejma
+	var motion = Vector2.ZERO  
 
 	if Input.is_action_pressed("ui_right"):
 		motion.x += 1
@@ -21,13 +24,13 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.play("idile")
 
-	motion = motion.normalized() * speed  # Normalizuj pa pomnoži sa speed
+	motion = motion.normalized() * speed  
 	velocity = motion
 	move_and_slide()
 
-	# --- Ograničenje da karakter ne može izaći iz ekrana ---
+	
 	var screen_size = get_viewport_rect().size
-	var margin = 16  # Polovina širine/visine sprita, prilagodi po potrebi
+	var margin = 16  
 
 	global_position.x = clamp(global_position.x, margin, screen_size.x - margin)
 	global_position.y = clamp(global_position.y, margin, screen_size.y - margin)

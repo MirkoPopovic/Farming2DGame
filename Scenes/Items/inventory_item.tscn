@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://4iib1nsyhtht"]
+
+[ext_resource type="Script" uid="uid://71enb16flk3t" path="res://Scenes/Items/inventory_item.gd" id="1_45nji"]
+[ext_resource type="Texture2D" uid="uid://qqvkoj3t2eob" path="res://Assets/Sprout Lands - Sprites - Basic pack/Objects/Egg_item.png" id="2_qf3q5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgxb7"]
+radius = 7.0
+
+[node name="inventory_item" type="Node2D"]
+position = Vector2(1, -1)
+script = ExtResource("1_45nji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qf3q5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vgxb7")
+
+[node name="Interact_ui" type="CanvasLayer" parent="."]
+visible = false
+follow_viewport_enabled = true
+
+[node name="Label" type="Label" parent="Interact_ui"]
+offset_left = 544.0
+offset_top = 333.0
+offset_right = 651.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "E to pickup"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
