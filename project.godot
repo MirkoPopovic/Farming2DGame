@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FarmingGame"
-run/main_scene="uid://ohv2b857wx7x"
+run/main_scene="uid://dia8rh3uw22fc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/window_width_override=1280
-window/size/window_height_override=640
+window/size/mode=3
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="expand"

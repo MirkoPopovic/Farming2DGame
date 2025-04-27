@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://ohv2b857wx7x"]
+[gd_scene load_steps=15 format=3 uid="uid://ohv2b857wx7x"]
 
+[ext_resource type="Script" uid="uid://2xoiid84lo1a" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://dnqckyadu6h6j" path="res://Assets/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_uvnfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvnfx"]
@@ -105,12 +106,14 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(300, 199)
+script = ExtResource("1_a3d8c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_uvnfx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_dd0ac")
-animation = &"idile"
-frame_progress = 0.261704
+animation = &"down_animation"
+frame_progress = 0.317405
