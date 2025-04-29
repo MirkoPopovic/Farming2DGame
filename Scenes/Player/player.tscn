@@ -1,8 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://ohv2b857wx7x"]
+[gd_scene load_steps=49 format=3 uid="uid://ohv2b857wx7x"]
 
-[ext_resource type="Script" uid="uid://2xoiid84lo1a" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="Script" uid="uid://d4mumqdrl0y5b" path="res://Scenes/Player/player.gd" id="1_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://dnqckyadu6h6j" path="res://Assets/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="1_uvnfx"]
 [ext_resource type="Texture2D" uid="uid://l2yjk5bk6s2a" path="res://Assets/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="2_xpcdj"]
+[ext_resource type="Script" uid="uid://dxkn20mddxnld" path="res://Scripts/state_machine_v1/node_state_machine.gd" id="4_htcer"]
+[ext_resource type="Script" uid="uid://fcnachw4ecas" path="res://Scenes/Player/idile.gd" id="5_dd0ac"]
+[ext_resource type="Script" uid="uid://pfl8ocl1vma4" path="res://Scenes/Player/walk_state.gd" id="5_htcer"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oikmp"]
 atlas = ExtResource("2_xpcdj")
@@ -218,7 +221,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xpcdj")
 }],
 "loop": true,
-"name": &"idile_front",
+"name": &"idile_down",
 "speed": 3.0
 }, {
 "frames": [{
@@ -393,11 +396,25 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(300, 199)
-script = ExtResource("1_a3d8c")
+script = ExtResource("1_dd0ac")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dd0ac")
-animation = &"idile_front"
+animation = &"idile_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_a3d8c")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("4_htcer")
+initial_node_state = NodePath("Idile")
+
+[node name="Idile" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("5_dd0ac")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("5_htcer")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
