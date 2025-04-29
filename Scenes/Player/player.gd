@@ -11,18 +11,18 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("ui_right"):
 		motion.x += 1
-		$AnimatedSprite2D.play("right_animation")
+		$AnimatedSprite2D.play("walk_right")
 	elif Input.is_action_pressed("ui_left"):
 		motion.x -= 1
-		$AnimatedSprite2D.play("left_animation")
+		$AnimatedSprite2D.play("walk_left")
 	elif Input.is_action_pressed("ui_down"):
 		motion.y += 1
-		$AnimatedSprite2D.play("down_animation")
+		$AnimatedSprite2D.play("walk_down")
 	elif Input.is_action_pressed("ui_up"):
 		motion.y -= 1
-		$AnimatedSprite2D.play("up_animation")
+		$AnimatedSprite2D.play("walk_up")
 	else:
-		$AnimatedSprite2D.play("idile")
+		$AnimatedSprite2D.play("idile_front")
 
 	motion = motion.normalized() * speed  
 	velocity = motion
