@@ -29,7 +29,7 @@ func _on_physics_process(_delta : float) -> void:
 
 func _on_next_transitions() -> void:
 	if !GameInputEvents.is_movment_input():
-		transition.emit("idile")
+		transition.emit("Idle")
 
 
 func _on_enter() -> void:

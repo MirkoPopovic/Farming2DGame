@@ -1,8 +1,5 @@
 extends NodeState
 
-@warning_ignore("unused_signal")
-
-
 @export var player: Player
 @export var animated_sprite_2d: AnimatedSprite2D
 
@@ -32,7 +29,10 @@ func _on_next_transitions() -> void:
 	GameInputEvents.movement_input()
 	
 	if GameInputEvents.is_movment_input():
-		transition.emit("walk")
+		transition.emit("Walk")
+	
+	if player.current_tool == DataTypes.Tools.axeWood and GameInputEvents.use_tool():
+		transition.emit("chopping")
 
 
 func _on_enter() -> void:
